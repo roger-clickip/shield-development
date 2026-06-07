@@ -64,7 +64,7 @@ namespace logger
 #endif // REMOVE_PREVIOUS_LOG
 
 			write(LOG_TYPE_INFO, "=======================================================================================================");
-			write(LOG_TYPE_INFO, " Project-BO4 Initializing ... %s[0x%llX]", utilities::nt::library{}.get_name().c_str(), utilities::nt::library{}.get_ptr());
+			write(LOG_TYPE_INFO, " Project-BO4 Inicializando ... %s[0x%llX]", utilities::nt::library{}.get_name().c_str(), utilities::nt::library{}.get_ptr());
 			write(LOG_TYPE_INFO, "=======================================================================================================");
 		}
 	};

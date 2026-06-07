@@ -64,15 +64,15 @@ namespace blackbox
 
 		void display_error_dialog()
 		{
-			const std::string error_str = utilities::string::va("Fatal error (0x%08X) at 0x%p (0x%p).\n"
-			                                                "A minidump has been written.\n",
+			const std::string error_str = utilities::string::va("Erro fatal (0x%08X) em 0x%p (0x%p).\n"
+			                                                "Um minidump foi gerado.\n",
 			                                                exception_data.code, exception_data.address,
 				                                            reverse_b(reinterpret_cast<uint64_t>(exception_data.address)));
 
 			utilities::thread::suspend_other_threads();
 			show_mouse_cursor();
 
-			MessageBoxA(nullptr, error_str.data(), "Project-BO4 ERROR", MB_ICONERROR);
+			MessageBoxA(nullptr, error_str.data(), "Project-BO4 ERRO", MB_ICONERROR);
 			TerminateProcess(GetCurrentProcess(), exception_data.code);
 		}
 
@@ -83,10 +83,10 @@ namespace blackbox
 				recovery_data.last_recovery = std::chrono::high_resolution_clock::now();
 				++recovery_data.recovery_counts;
 
-				game::Com_Error(game::ERR_DROP, "Fatal error (0x%08X) at 0x%p (0x%p).\nA minidump has been written.\n\n"
-				                "Project-BO4 has tried to recover your game, but it might not run stable anymore.\n\n"
-				                "Make sure to update your graphics card drivers and install operating system updates!\n"
-				                "Closing or restarting Steam might also help.",
+				game::Com_Error(game::ERR_DROP, "Erro fatal (0x%08X) em 0x%p (0x%p).\nUm minidump foi gerado.\n\n"
+				                "O Project-BO4 tentou recuperar o jogo, mas ele pode não funcionar de forma estável.\n\n"
+				                "Certifique-se de atualizar os drivers da placa de vídeo e instalar as atualizações do sistema operacional!\n"
+				                "Fechar ou reiniciar o Steam também pode ajudar.",
 				                exception_data.code, exception_data.address,
 					            reverse_b(reinterpret_cast<uint64_t>(exception_data.address)));
 			}
@@ -229,19 +229,19 @@ namespace blackbox
 				info.append("\r\n");
 			};
 
-			line(build_info + " Crash Report\r\n");
+			line(build_info + " Relatório de Crash\r\n");
 
-			line(utilities::string::va("Exception Code: 0x%08X(%s)", exceptioninfo->ExceptionRecord->ExceptionCode, 
+			line(utilities::string::va("Código de Exceção: 0x%08X(%s)", exceptioninfo->ExceptionRecord->ExceptionCode, 
 				get_exception_string(exceptioninfo->ExceptionRecord->ExceptionCode)));
-			line(utilities::string::va("Exception Addr: 0x%llX[%s]", exceptioninfo->ExceptionRecord->ExceptionAddress, 
+			line(utilities::string::va("Endereço da Exceção: 0x%llX[%s]", exceptioninfo->ExceptionRecord->ExceptionAddress, 
 				utilities::nt::library::get_by_address(exceptioninfo->ExceptionRecord->ExceptionAddress).get_name().c_str()));
-			line(utilities::string::va("Main Module: %s[0x%llX]", main_module.get_name().c_str(), main_module.get_ptr()));
-			line(utilities::string::va("Thread ID: %d(%s)", GetCurrentThreadId(), is_game_thread() ? "Main Thread" : "Auxiliary Threads"));
+			line(utilities::string::va("Módulo Principal: %s[0x%llX]", main_module.get_name().c_str(), main_module.get_ptr()));
+			line(utilities::string::va("ID da Thread: %d(%s)", GetCurrentThreadId(), is_game_thread() ? "Thread Principal" : "Threads Auxiliares"));
 
 			if (exceptioninfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION)
 			{
-				line(utilities::string::va("\r\nExtended Info: Attempted to %s 0x%012X",
-					exceptioninfo->ExceptionRecord->ExceptionInformation[0] == 1 ? "write to" : "read from",
+				line(utilities::string::va("\r\nInfo Estendida: Tentativa de %s 0x%012X",
+					exceptioninfo->ExceptionRecord->ExceptionInformation[0] == 1 ? "escrever em" : "ler de",
 					exceptioninfo->ExceptionRecord->ExceptionInformation[1]));
 			}
 
@@ -262,7 +262,7 @@ namespace blackbox
 			utilities::compression::zip::archive zip_file{};
 			zip_file.add("crash.dmp", exception::create_minidump(exceptioninfo));
 			zip_file.add("info.txt", generate_crash_info(exceptioninfo));
-			zip_file.write(crash_name, "Project-bo4 Crash Dump");
+			zip_file.write(crash_name, "Project-bo4 Dump de Crash");
 		}
 
 		bool is_harmless_error(const LPEXCEPTION_POINTERS exceptioninfo)

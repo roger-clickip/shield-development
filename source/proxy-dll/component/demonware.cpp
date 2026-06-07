@@ -459,8 +459,8 @@ namespace demonware
 		{
 			if (!utilities::io::file_exists("LPC/.manifest") || !utilities::io::file_exists("LPC/core_ffotd_tu23_639_cf92ecf4a75d3f79.ff") || !utilities::io::file_exists("LPC/core_playlists_tu23_639_cf92ecf4a75d3f79.ff"))
 			{
-				MessageBoxA(nullptr, "some required LPC files seems to be missing. You need to get and place them manually since this emulator doesnt host and provide those files; read instructions in github documentation for more info.",
-					"LPC Files Missing", MB_ICONERROR);
+				MessageBoxA(nullptr, "Alguns arquivos LPC obrigatórios parecem estar faltando. Você precisa obtê-los e colocá-los manualmente, pois este emulador não os hospeda; consulte as instruções na documentação do GitHub para mais informações.",
+					"Arquivos LPC Ausentes", MB_ICONERROR);
 			}
 		}
 	}

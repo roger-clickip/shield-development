@@ -57,9 +57,9 @@ namespace platform
 			winreg::RegResult result = key.TryOpen(HKEY_CURRENT_USER, L"SOFTWARE\\Blizzard Entertainment\\Battle.net");
 			if (!result)
 			{
-				MessageBoxA(nullptr, "You need to have BlackOps4 from Battle.Net to use this product...", "Error", MB_ICONWARNING);
+				MessageBoxA(nullptr, "Você precisa ter o BlackOps4 da Battle.Net para usar este programa...", "Erro", MB_ICONWARNING);
 				ShellExecuteA(nullptr, "open", "http://battle.net/", nullptr, nullptr, SW_SHOWNORMAL);
-				logger::write(logger::LOG_TYPE_INFO, "[ PLATFORM ]: Couldnt find Battle.Net Launcher; Shutting down...");
+				logger::write(logger::LOG_TYPE_INFO, "[ PLATAFORMA ]: Battle.Net Launcher não encontrado; Encerrando...");
 
 				TerminateProcess(GetCurrentProcess(), 1);
 			}
@@ -95,7 +95,7 @@ namespace platform
 
 			//PC_TextChat_Print_Hook.create(0x1422D4A20_g, PC_TextChat_Print_Stub); // Disable useless system messages passed into chat box
 			
-			logger::write(logger::LOG_TYPE_INFO, "[ PLATFORM ]: BattleTag: '%s', BattleID: '%llu'", bnet_get_username(), bnet_get_userid());
+			logger::write(logger::LOG_TYPE_INFO, "[ PLATAFORMA ]: BattleTag: '%s', BattleID: '%llu'", bnet_get_username(), bnet_get_userid());
 		}
 	};
 }

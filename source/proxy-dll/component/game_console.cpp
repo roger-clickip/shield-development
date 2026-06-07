@@ -267,7 +267,7 @@ namespace game_console
 			if (matches.size() > con.max_suggestions)
 			{
 				draw_hint_box(1, con_inputHintBoxColor);
-				draw_hint_text(0, utilities::string::va("%i matches (too many to show here)", matches.size()), con_inputDvarMatchColor);
+				draw_hint_text(0, utilities::string::va("%i resultados (muitos para exibir aqui)", matches.size()), con_inputDvarMatchColor);
 			}
 			else if (matches.size() == 1)
 			{
@@ -282,7 +282,7 @@ namespace game_console
 					auto offset_x = (con.screen_max[0] - con.screen_pointer.x) / 4.f;
 
 					draw_hint_text(0, dvars::get_value_string(dvar, &dvar->value->current).data(), con_inputDvarMatchColor, offset_x);
-					draw_hint_text(1, "  default", con_inputDvarInactiveValueColor);
+					draw_hint_text(1, "  padrão", con_inputDvarInactiveValueColor);
 					draw_hint_text(1, dvars::get_value_string(dvar, &dvar->value->reset).data(), con_inputDvarInactiveValueColor, offset_x);
 					draw_hint_text(2, matches[0].desc, con_inputDescriptionColor, 0);
 
@@ -379,7 +379,7 @@ namespace game_console
 					utilities::hook::invoke<bool>(game::Live_SystemInfo, 0, 0, sysinfo_version, 256);
 					char sysinfo_livebits[256];
 					utilities::hook::invoke<bool>(game::Live_SystemInfo, 0, 1, sysinfo_livebits, 256);
-					const char* info = utilities::string::va("Project-BO4 1.0.0, Engine Version: %s, LiveBits: %s", sysinfo_version, sysinfo_livebits);
+					const char* info = utilities::string::va("Project-BO4 1.0.0, Versão do Motor: %s, LiveBits: %s", sysinfo_version, sysinfo_livebits);
 
 					game::R_AddCmdDrawText(info, 0x7FFFFFFF, R_DrawTextFont, x, ((height - 16.0f) + y) + con.font_height, con.font_scale, con.font_scale, 0.0f, con_outputVersionStringColor, 0);
 

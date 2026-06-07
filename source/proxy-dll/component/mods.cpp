@@ -1363,7 +1363,7 @@ namespace mods {
 			hksl_loadfile_hook.create(0x14375D6A0_g, hksl_loadfile_stub);
 			bg_cache_sync_hook.create(0x1405CE0B0_g, bg_cache_sync_stub);
 
-			command::add("reload_mods", mods_reload_f, "Reload the shield mods");
+			command::add("reload_mods", mods_reload_f, "Recarregar os mods do Shield");
 		}
 	};
 }

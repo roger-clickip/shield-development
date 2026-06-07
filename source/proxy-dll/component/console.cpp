@@ -321,7 +321,7 @@ namespace console
 			freopen_s(&empty, "CONOUT$", "r", stdin);
 			freopen_s(&empty, "CONOUT$", "w", stdout);
 			freopen_s(&empty, "CONOUT$", "w", stderr);
-			SetConsoleTitle("Project-Bo4:");
+			SetConsoleTitle("Project-Bo4: Console");
 
 			printf_hook.create(printf, printf_stub);
 
