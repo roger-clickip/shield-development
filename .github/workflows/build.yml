@@ -30,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: XInput9_1_0-PTBR
-        path: build\bin\Release\XInput9_1_0.dll
+        path: build\bin\x64\Release\XInput9_1_0.dll
